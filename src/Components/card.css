@@ -1,0 +1,88 @@
+.header {
+  min-height: 10vh;
+  font-size: 36px;
+  color: white;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: flex-start;
+}
+
+.card-front {
+  background: #d4cdb1;
+  border-top: solid #7b906f 10px;
+  border-left: solid #7b906f 10px;
+  margin: 10px;
+  width: 240px;
+  height: 336px;
+  box-shadow: 5px 5px 5px black;
+  vertical-align: middle;
+}
+
+.char-img {
+  width: 239px;
+  border-top: solid black 1px;
+  /* border-bottom: solid black 1px; */
+  border-left: solid black 1px;
+}
+
+.char-title {
+  color: black;
+  padding: 5px;
+}
+
+.char-name {
+  font-size: 18px;
+}
+
+.card-back {
+  background: linear-gradient(#d4cdb1 75%, #7b906f 25%);
+  display: grid;
+  grid-template-rows: 25% 50% 25%;
+  margin: 10px;
+  width: 336px;
+  height: 240px;
+  box-shadow: 5px 5px 5px black;
+  vertical-align: middle;
+}
+
+.char-title {
+  font-size: 24px;
+}
+
+.nickname {
+  font-size: 12px;
+}
+
+.char-bio {
+  font-size: 12px;
+  display: flex;
+  flex-flow: column;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: black;
+}
+
+.spouse-status {
+  font-size: 8px;
+}
+
+table {
+  /* background: rgb(225, 225, 225, 0.8); */
+}
+table,
+th,
+td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+}
+
+.char-quote {
+  height: 75%;
+  font-size: 16px;
+  color: white;
+}
