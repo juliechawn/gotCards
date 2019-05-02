@@ -1,11 +1,147 @@
 
-.header {
-  min-height: 10vh;
+  .new-card {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    color: white;
+    font-size: 12px;
+    margin: 0 auto;
+    width: 100%;
+    border: 1px solid white;
+    padding: 10px;
+  }
+
+.got-header {
+  font-family: "Cinzel", serif;
   font-size: 36px;
   color: white;
 }
 
-.container {
+.got-subsubheader {
+  font-size: 20px;
+}
+
+.got-subheader {
+  font-size: 24px;
+}
+
+.new-card-inputs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-fields {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-input-file {
+  background: rgb(101, 101, 101) !important;
+  border-radius: 10px;
+}
+
+.red {
+  color: red;
+}
+
+.card-input {
+  color: white;
+  background: rgb(101, 101, 101);
+  border-radius: 10px;
+  border: none;
+  width: 150px;
+  padding: 3px 5px;
+}
+
+.card-input-sm {
+  color: white;
+  background: rgb(101, 101, 101) !important;
+  border-radius: 10px;
+  border: none;
+  width: 50px;
+  padding: 3px 5px;
+}
+
+.quote-input {
+  color: white;
+  background: rgb(101, 101, 101);
+  border-radius: 10px;
+  border: none;
+  height: 60px;
+  width: 150px;
+  padding: 5px;
+}
+
+.card-input::placeholder,
+.quote-input::placeholder,
+.card-input-sm::placeholder,
+.card-select-sm::placeholder {
+  color: rgb(186, 185, 185);
+}
+
+.card-select {
+  background: rgb(101, 101, 101) !important;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  background: white;
+  width: 150px;
+  height: 25px;
+}
+
+.card-select-sm {
+  background: rgb(101, 101, 101) !important;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  background: white;
+  width: 100px;
+  height: 25px;
+}
+
+.card-button {
+  margin-top: 10px;
+  cursor: pointer;
+  color: rgb(101, 101, 101)!important;
+  background: white;
+  border-radius: 10px;
+  height: 60px;
+  width: 40%;
+  font-size: 12px;
+}
+
+.card-button-photo {
+  word-wrap: break-word;
+  margin-top: 20px;
+  cursor: pointer;
+  padding: 10px;
+  color: rgb(101, 101, 101)!important;
+  background: white;
+  border-radius: 10px;
+  height: 60px;
+  width: 125px;
+  font-size: 12px;
+}
+
+.card-button:hover, .card-button-photo:hover{
+  background: rgb(101, 101, 101);
+  color: white !important;
+}
+
+.card-button-delete {
+  color: white;
+}
+
+.card-button-delete:hover {
+  color: red;
+}
+
+.card-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -25,7 +161,9 @@
 }
 
 .char-img {
-  width: 239px;
+  object-fit: cover;
+  width: 230px;
+  height: 280px;
   border-top: solid black 1px;
   border-bottom: solid black 1px;
   border-left: solid black 1px;
@@ -60,9 +198,9 @@
 }
 
 .char-bio {
+  font-size: 10px;
   display: flex;
-  align-items: stretch;
-  font-size: 10px;  
+  flex-flow: column;
   margin-left: 5px;
   margin-right: 5px;
   color: black;
@@ -72,21 +210,20 @@
   font-size: 8px;
 }
 
-table {
+.bio-table {
   table-layout: fixed;
-  width: 100% ;
+  width: 100%;
   border-collapse: collapse;
 }
 
-tr th {
+.bio-table tr th {
   padding-top: 7.5px;
 }
-th,
+.bio-table th,
 td {
   vertical-align: top;
   border-spacing: 5em;
   width: 25%;
-  
 }
 
 .char-quote {
@@ -106,29 +243,161 @@ td {
 }
 
 .stark-b {
-  background: url("./images/stark.png") center no-repeat, linear-gradient(#d4cdb1 75%, #7b906f 25%);
+  background: url("./images/stark.png") center no-repeat,
+    linear-gradient(#d4cdb1 75%, #7b906f 25%);
   background-size: contain;
-  
 }
 
 .targaryen-f {
-  background: #A9181F;
+  background: #a9181f;
   border-top: solid black 10px;
   border-left: solid black 10px;
 }
 
 .targaryen-b {
-  background: url("./images/targaryen.png") center no-repeat, linear-gradient(#A9181F 75%, black 25%);
+  background: url("./images/targaryen.png") center no-repeat,
+    linear-gradient(#a9181f 75%, black 25%);
   background-size: contain;
 }
 
 .lannister-f {
-  background: #C2AD78;
-  border-top: solid #87090A 10px;
-  border-left: solid #87090A 10px;
+  background: #c2ad78;
+  border-top: solid #87090a 10px;
+  border-left: solid #87090a 10px;
 }
 
 .lannister-b {
-  background: url("./images/lannister.png") center no-repeat, linear-gradient(#C2AD78 75%, #87090A 25%);
+  background: url("./images/lannister.png") center no-repeat,
+    linear-gradient(#c2ad78 75%, #87090a 25%);
   background-size: contain;
+}
+
+.greyjoy-f {
+  background: #b49022;
+  border-top: solid black 10px;
+  border-left: solid black 10px;
+}
+
+.greyjoy-b {
+  background: url("./images/greyjoy.png") center no-repeat,
+    linear-gradient(#b49022 75%, black 25%);
+  background-size: contain;
+}
+
+.tyrell-f {
+  background: #EEBE3E;
+  border-top: solid #8DA080 10px;
+  border-left: solid #8DA080 10px;
+}
+
+.tyrell-b {
+  background: url("./images/tyrell.png") center no-repeat,
+    linear-gradient(#EEBE3E 75%, #8DA080 25%);
+  background-size: contain;
+}
+
+.martell-f {
+  background: #F0863A;
+  border-top: solid #80252A 10px;
+  border-left: solid #80252A 10px;
+}
+
+.martell-b {
+  background: url("./images/martell.png") center no-repeat,
+    linear-gradient(#F0863A 75%, #80252A 25%);
+  background-size: contain;
+}
+
+.freefolk-b {
+  background: url("./images/freefolk.png") center no-repeat,
+  linear-gradient(#C7F9FA 75%, #0A1626 25%);
+  background-size: contain;
+}
+
+.freefolk-f {
+  background: #C7F9FA;
+  border-top: solid black 10px;
+  border-left: solid black 10px;
+}
+
+.nightswatch-b {
+  background: url("./images/nightswatch.png") center no-repeat,
+  linear-gradient(rgb(142, 139, 139) 75%, black 25%);
+  background-size: contain;
+}
+
+.nightswatch-f {
+  background: rgb(142, 139, 139) ;
+  border-top: solid #0A1626 10px;
+  border-left: solid #0A1626 10px;
+}
+
+.tully-b {
+  background: url("./images/tully.png") center no-repeat,
+  linear-gradient(#AE432F 75%, #212250 25%);
+  background-size: contain;
+}
+
+.tully-f {
+  background: #AE432F ;
+  border-top: solid #212250 10px;
+  border-left: solid #212250 10px;
+}
+
+.frey-b {
+  background: url("./images/frey.png") center no-repeat,
+  linear-gradient(#AFAD96 75%, #18183A 25%);
+  background-size: contain;
+}
+
+.frey-f {
+  background: #AFAD96 ;
+  border-top: solid #18183A 10px;
+  border-left: solid #18183A 10px;
+}
+
+.bolton-b {
+  background: url("./images/bolton.png") center no-repeat,
+  linear-gradient(#A43039 75%, black 25%);
+  background-size: contain;
+}
+
+.bolton-f {
+  background: #A43039 ;
+  border-top: solid black 10px;
+  border-left: solid black 10px;
+}
+
+.na-b {
+  background: url("./images/GOT.png") 100% 35%  no-repeat,
+  linear-gradient(silver 75%, black 25%);
+  background-size: contain;
+}
+
+.na-f {
+  background: silver ;
+  border-top: solid black 10px;
+  border-left: solid black 10px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.Dropzone {
+  height: 125px;
+  width: 125px;
+  border: 2px dashed rgb(187, 186, 186);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 12px;
+}
+
+.Icon {
+  object-fit: cover;
+  opacity: 0.7;
+  height: 100px;
+  width: 100px;
 }

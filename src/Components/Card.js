@@ -1,7 +1,11 @@
 import React, { Component } from "react";
+import { graphql } from "react-apollo";
+import MutationDeleteCharacter from "../GraphQL/MutationDeleteCharacter";
 
+import axios from "axios";
 import "./card.css";
-import {Stark} from "./images/stark.png"
+import QueryAllCharacters from "../GraphQL/QueryAllCharacters";
+
 
 class Card extends Component {
   constructor(props) {
@@ -10,6 +14,22 @@ class Card extends Component {
 
     this.renderFront = this.renderFront.bind(this);
     this.renderBack = this.renderBack.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  handleDelete(e) {
+    e.preventDefault();
+    const card = this.props;
+    const img = this.props.image;
+    const { deleteCharacterTable } = this.props;
+
+    deleteCharacterTable(card);
+    axios
+      .delete(img)
+      .then(response => {
+      })
+      .catch(error => {
+      });
   }
 
   getHouseF() {
@@ -20,6 +40,24 @@ class Card extends Component {
         return "targaryen-f";
       case "Lannister":
         return "lannister-f";
+      case "Greyjoy":
+        return "greyjoy-f";
+      case "Tyrell":
+        return "tyrell-f";
+        case "Martell":
+        return "martell-f";
+        case "Free Folk":
+        return "freefolk-f";
+        case "Nights Watch":
+        return "nightswatch-f";
+        case "Tully":
+        return "tully-f";
+        case "Frey":
+        return "frey-f";
+        case "Bolton":
+        return "bolton-f";
+        case "No Affiliation":
+        return "na-f";
       default:
     }
   }
@@ -32,6 +70,24 @@ class Card extends Component {
         return "targaryen-b";
       case "Lannister":
         return "lannister-b";
+      case "Greyjoy":
+        return "greyjoy-b";
+        case "Tyrell":
+        return "tyrell-b";
+        case "Martell":
+        return "martell-b";
+        case "Free Folk":
+        return "freefolk-b";
+        case "Nights Watch":
+        return "nightswatch-b";
+        case "Tully":
+        return "tully-b";
+        case "Frey":
+        return "frey-b";
+        case "Bolton":
+        return "bolton-b";
+        case "No Affiliation":
+        return "na-b";
       default:
     }
   }
@@ -58,12 +114,17 @@ class Card extends Component {
         onClick={() => this.setState({ toggle: !this.state.toggle })}
       >
         <div className="char-title">
-          <div className="title">{this.props.name}</div>
-          {/* <span>{this.props.status}</span> */}
-          <div className="nickname">{this.props.nickname}</div>
+          <div className="title">
+            {this.props.name}{" "}
+            <span className="spouse-status">{this.props.status}</span>
+          </div>
+
+          <div className="nickname">
+            <strong>{this.props.nickname}</strong>
+          </div>
         </div>
         <div className="char-bio">
-          <table>
+          <table className="bio-table">
             <thead>
               <tr>
                 <th>HOUSE</th>
@@ -82,7 +143,7 @@ class Card extends Component {
             </tbody>
             <thead>
               <tr>
-                <th>SPOUSE</th>
+                <th>SPOUSE/LOVER</th>
                 <th>BEST FRIEND</th>
                 <th>PET</th>
                 <th>WEAPON</th>
@@ -91,9 +152,9 @@ class Card extends Component {
             <tbody>
               <tr>
                 <td>
-                  {this.props.spouse}
+                  {this.props.spouse}{" "}
                   <span className="spouse-status">
-                    {" "}{this.props.spousestatus}
+                    {this.props.spousestatus}
                   </span>
                 </td>
                 <td>{this.props.bestfriend}</td>
@@ -111,10 +172,40 @@ class Card extends Component {
   }
 
   render() {
+    let newcard;
+    if (this.props.delete === true) {
+      newcard = (
+        <span className="card-button-delete" onClick={this.handleDelete}>
+          CLICK TO DELETE
+        </span>
+      );
+    }
     return (
-      <div>{this.state.toggle ? this.renderFront() : this.renderBack()}</div>
+      <div>
+        {this.state.toggle ? this.renderFront() : this.renderBack()}
+        {newcard}
+      </div>
     );
   }
 }
 
-export default Card;
+export default graphql(MutationDeleteCharacter,  {
+  options: {
+    update: (proxy, { data: { deleteCharacterTable } }) => {
+        const query = QueryAllCharacters;
+        const data = proxy.readQuery({ query });
+        data.listCharacterTables.items = data.listCharacterTables.items.filter(card => card.id !== deleteCharacterTable.id);
+        proxy.writeQuery({ query, data });
+    }
+},
+  props: props => ({
+    deleteCharacterTable: card => {
+      props.mutate({
+        variables: { id: card.id },
+        optimisticResponse: {
+          deleteCharacterTable: { ...card, __typename: "Character" },
+        }
+      });
+    }
+  })
+})(Card);
